@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="完整認識 SEO Schema 網頁結構化資料標記，了解 Schema 對 SEO 與 AI 搜尋的關聯、常見類型、設定流程、測試工具及常見問題。">
+  <meta name="keywords" content="SEO Schema, Schema, 結構化資料, 網頁結構化資料標記, JSON-LD, AI搜尋, GEO">
+  <title>SEO Schema 是什麼？網頁結構化資料標記、常見類型、設定教學與 AI 搜尋應用</title>
+  <link rel="stylesheet" href="seo-blog.css">
+
+  <!--
+    Schema 結構化資料（JSON-LD）
+    上線前請將以下範例資料替換為真實資訊：
+    1. https://www.example.com/seo-schema-guide/：本篇文章正式網址
+    2. https://www.example.com/：網站首頁網址
+    3. 「請替換為網站名稱」：網站／發布組織名稱
+    4. 「請替換為作者姓名」：實際作者姓名
+    5. description：請與正式頁面摘要保持一致
+    請勿保留 example.com 或提示文字直接上線。
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.example.com/#organization",
+        "name": "請替換為網站名稱",
+        "url": "https://www.example.com/"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.example.com/#website",
+        "url": "https://www.example.com/",
+        "name": "請替換為網站名稱",
+        "publisher": {
+          "@id": "https://www.example.com/#organization"
+        },
+        "inLanguage": "zh-Hant"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.example.com/seo-schema-guide/#webpage",
+        "url": "https://www.example.com/seo-schema-guide/",
+        "name": "SEO Schema 是什麼？網頁結構化資料標記、常見類型、設定教學與 AI 搜尋應用",
+        "description": "從 Schema 基礎概念、SEO 效益到 AI 搜尋關聯，完整了解結構化資料的常見類型、設定流程與測試方式。",
+        "isPartOf": {
+          "@id": "https://www.example.com/#website"
+        },
+        "inLanguage": "zh-Hant",
+        "breadcrumb": {
+          "@id": "https://www.example.com/seo-schema-guide/#breadcrumb"
+        },
+        "mainEntity": {
+          "@id": "https://www.example.com/seo-schema-guide/#article"
+        }
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": "https://www.example.com/seo-schema-guide/#article",
+        "mainEntityOfPage": {
+          "@id": "https://www.example.com/seo-schema-guide/#webpage"
+        },
+        "headline": "SEO Schema 是什麼？網頁結構化資料標記、常見類型、設定教學與 AI 搜尋應用",
+        "description": "從 Schema 基礎概念、SEO 效益到 AI 搜尋關聯，完整了解結構化資料的常見類型、設定流程與測試方式。",
+        "author": {
+          "@type": "Person",
+          "name": "請替換為作者姓名"
+        },
+        "publisher": {
+          "@id": "https://www.example.com/#organization"
+        },
+        "inLanguage": "zh-Hant"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.example.com/seo-schema-guide/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "首頁",
+            "item": "https://www.example.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "SEO 知識專欄",
+            "item": "https://www.example.com/seo/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "SEO Schema 是什麼？網頁結構化資料標記、常見類型、設定教學與 AI 搜尋應用",
+            "item": "https://www.example.com/seo-schema-guide/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">SEO 知識專欄｜技術 SEO</span> <span class="eyebrow"><a class="brand" href="index.html">Zoe 的行銷筆記</a></span>
+      <h1>SEO Schema 是什麼？網頁結構化資料標記、常見類型、設定教學與 AI 搜尋應用</h1>
+      <p>從 Schema 基礎概念、SEO 效益到 AI 搜尋關聯，完整了解結構化資料的常見類型、設定流程與測試方式。</p>
+      <div class="meta">閱讀主題：SEO Schema・Structured Data・JSON-LD・GEO</div>
+    </div>
+  </header>
+
+  <main>
+    <p class="intro">在傳統 SEO 優化中，網站經常透過關鍵字布局、內容品質及網站架構，幫助搜尋引擎理解網頁主題。但隨著搜尋技術發展，搜尋引擎不只需要辨識網頁中的文字，也需要理解內容代表的意義，以及不同資訊之間的關聯。</p>
+    <p>這時，<strong>Schema 結構化資料標記（Structured Data）</strong> 就成為網站技術 SEO 中的重要工具。透過 Schema，網站可以使用標準化的資料格式，明確描述企業資訊、文章內容、商品價格、作者及活動日期等資訊，讓搜尋引擎更容易理解網頁內容。</p>
+    <p>近年 AI 搜尋工具逐漸普及，Google AI Overviews、AI Mode，以及 ChatGPT、Perplexity 等 AI 搜尋服務，也讓網站經營者開始關注：結構化資料是否能幫助 AI 理解網站，進而增加內容被搜尋或引用的機會？</p>
+    <p>究竟 Schema 是什麼？對 SEO 有哪些幫助？又該如何設定，才能兼顧傳統搜尋與 AI 搜尋的需求？本文將帶你完整認識網頁結構化資料。</p>
+
+    <nav class="toc" aria-label="文章目錄">
+      <h2>文章目錄</h2>
+      <ol>
+        <li><a href="#what">Schema 是什麼？</a></li>
+        <li><a href="#seo">Schema 對 SEO 有什麼幫助？</a></li>
+        <li><a href="#ai">Schema 與 AI 搜尋的關係</a></li>
+        <li><a href="#types">Schema 常見類型</a></li>
+        <li><a href="#scope">全站與單頁設定方式</a></li>
+        <li><a href="#setup">Schema 設定教學</a></li>
+        <li><a href="#mistakes">常見錯誤與注意事項</a></li>
+        <li><a href="#faq">常見問題 FAQ</a></li>
+        <li><a href="#conclusion">結論</a></li>
+      </ol>
+    </nav>
+
+    <section id="what">
+      <h2>一、Schema 是什麼？認識 SEO 結構化資料標記</h2>
+      <h3>1. Schema（結構化資料）是什麼？</h3>
+      <p>Schema 是一種用來描述網頁內容的標準化標記方式，通常稱為「結構化資料」（Structured Data）。網站上的文字、圖片及資訊雖然能讓使用者閱讀，但搜尋引擎仍需要判斷這些內容各自代表什麼意思。</p>
+      <p>例如，某個商品網頁出現商品名稱、價格、品牌及評價。一般網頁可能只是將這些資訊呈現在畫面上；透過 Schema 標記，則能進一步告訴搜尋引擎哪些文字是商品名稱、價格、品牌，以及評價代表什麼。</p>
+      <div class="grid">
+        <div class="card"><h4>一般網頁資訊</h4><p>無線藍牙耳機｜ABC 品牌｜NT$2,990｜4.8 顆星。搜尋引擎需要從上下文判斷各項資訊的意義。</p></div>
+        <div class="card"><h4>Schema 結構化資料</h4><p>Product、name、brand、price、ratingValue 等欄位，明確描述資訊的類型與意義。</p></div>
+      </div>
+      <p>Schema 並不是用來取代網頁原本的文字內容，而是額外提供一層機器可讀的資訊描述，讓搜尋引擎更容易理解網頁。</p>
+
+      <h3>2. Schema.org 是什麼？與 Structured Data 有什麼關係？</h3>
+      <ul>
+        <li><strong>Structured Data（結構化資料）</strong>：將資訊依照特定規則整理，使資料具有明確欄位及意義的方式。</li>
+        <li><strong>Schema.org</strong>：由 Google、Microsoft、Yahoo 和 Yandex 等公司共同推動的結構化資料詞彙標準，定義不同資料類型及其屬性。</li>
+        <li><strong>Schema Markup（Schema 標記）</strong>：將 Schema.org 定義的詞彙實際應用在網頁中的標記方式。</li>
+      </ul>
+      <p>例如，描述一篇文章時，可以使用 Schema.org 定義的 <code>Article</code> 類型，並透過 <code>headline</code>、<code>author</code>、<code>datePublished</code> 等屬性描述文章資訊。更多類型及屬性可參考 <a href="https://schema.org/" target="_blank" rel="noopener">Schema.org 官方網站</a>。</p>
+
+      <h3>3. 結構化資料如何協助 Google 理解網頁內容？</h3>
+      <p>搜尋引擎需要探索、檢索及索引網頁，再判斷內容與使用者搜尋需求的關聯。結構化資料能透過明確欄位，提供網頁內容的補充描述。</p>
+      <ul>
+        <li><code>Organization</code>：說明網站所屬的企業或組織。</li>
+        <li><code>Article</code>：說明網頁是一篇文章。</li>
+        <li><code>Product</code>：說明網頁介紹的是商品。</li>
+        <li><code>Person</code>：說明網頁所提及的人物資訊。</li>
+      </ul>
+      <p>這些資料可以協助搜尋引擎辨識網頁中的實體（Entity），並建立企業、人物、商品及內容之間的關聯。不過，搜尋引擎仍會搭配實際網頁內容及其他資訊進行判斷。</p>
+
+      <h3>4. Schema、HTML 與一般網頁文字有什麼不同？</h3>
+      <table>
+        <thead><tr><th>比較項目</th><th>HTML</th><th>Schema</th></tr></thead>
+        <tbody>
+          <tr><td>主要用途</td><td>建立網頁結構</td><td>描述內容意義</td></tr>
+          <tr><td>標記對象</td><td>標題、段落、圖片等</td><td>商品、文章、企業等</td></tr>
+          <tr><td>常見語法</td><td>HTML 標籤</td><td>JSON-LD、Microdata、RDFa</td></tr>
+        </tbody>
+      </table>
+      <p>HTML 負責呈現網頁內容，Schema 則協助機器更清楚理解內容的意義，兩者可以搭配使用。</p>
+
+      <h3>5. 結構化資料在網頁原始碼中長什麼樣子？</h3>
+      <p>目前 Google 建議使用 JSON-LD 作為結構化資料的標記格式。JSON-LD 通常放在 HTML 的 <code>&lt;script type="application/ld+json"&gt;</code> 標籤中。</p>
+      <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SEO Schema 是什麼？",
+  "author": {
+    "@type": "Person",
+    "name": "王小明"
+  },
+  "datePublished": "2026-11-20"
+}
+&lt;/script&gt;</code></pre>
+      <p>這段程式碼透過 <code>@type</code> 指定網頁內容為文章，再利用 <code>headline</code>、<code>author</code> 及 <code>datePublished</code> 等屬性描述文章資訊。</p>
+    </section>
+
+    <section id="seo">
+      <h2>二、Schema 對 SEO 有什麼幫助？為什麼網站需要設定？</h2>
+      <h3>1. 協助搜尋引擎理解網頁內容與資訊關係</h3>
+      <p>搜尋引擎需要理解網頁的主題、內容及資訊關係，才能判斷網頁是否符合使用者的搜尋需求。企業網站可以使用 <code>Organization</code> 描述公司名稱、官方網站、Logo 及聯絡資訊；文章頁面則可以使用 <code>Article</code> 描述標題、作者及發布日期。</p>
+
+      <h3>2. 提升搜尋結果的資訊豐富度與呈現機會</h3>
+      <p>正確設定 Schema，部分網頁便有機會符合 Google 複合式搜尋結果（Rich Results）的顯示資格。</p>
+      <div class="grid">
+        <div class="card"><h4>Product 商品資訊</h4><p>符合條件時，搜尋結果可能顯示商品價格、庫存及評價等資訊。</p></div>
+        <div class="card"><h4>Article 文章資訊</h4><p>協助 Google 理解文章標題、作者、發布日期及圖片等資訊。</p></div>
+        <div class="card"><h4>BreadcrumbList 網站導覽</h4><p>描述網站階層路徑，幫助使用者理解網頁在網站中的位置。</p></div>
+      </div>
+      <p>設定 Schema 不代表 Google 一定會採用這些資訊呈現搜尋結果。是否顯示仍取決於 Google 的系統判斷、網頁品質及相關規範。</p>
+
+      <h3>3. 建立網站、企業、作者與商品之間的關聯</h3>
+      <p>Schema 也能協助網站建立不同實體之間的關係，例如企業與官方網站、作者與文章、品牌與商品、商品與評價，以及服務提供者與服務項目。這些資訊能讓網站內容形成較清楚的資訊關聯。</p>
+
+      <h3>4. 強化網站資訊架構與內容辨識度</h3>
+      <p>當網站同時包含首頁、服務頁、商品頁、文章頁及活動頁時，可以依照不同頁面使用適當的 Schema。企業可在全站使用 Organization 描述企業資訊，再依照頁面類型套用 Article、Product 或 Service 等標記。</p>
+
+      <h3>5. Schema 能直接提升 Google 搜尋排名嗎？</h3>
+      <div class="callout"><strong>Schema 本身並不是直接提升 Google 搜尋排名的保證。</strong><br>結構化資料主要協助搜尋引擎理解網頁內容，並讓符合資格的頁面有機會取得複合式搜尋結果呈現。它應視為整體 SEO 優化的一環，而不是取代內容品質、網站速度、內部連結及技術 SEO 的單一手段。</div>
+    </section>
+
+    <section id="ai">
+      <h2>三、Schema 與 AI 搜尋有什麼關係？結構化資料如何影響 AI 搜尋？</h2>
+      <p>隨著 AI 搜尋技術發展，使用者不再只透過輸入關鍵字尋找網頁，也會直接向 AI 提出問題，讓系統整理資訊、比較產品或推薦服務。AI 搜尋工具需要從網路上的大量資訊中找到相關內容、理解其意義，再整理成容易閱讀的答案。</p>
+
+      <h3>1. AI 搜尋如何理解及擷取網站資訊？</h3>
+      <p>傳統搜尋引擎主要透過爬蟲探索網站、建立索引，再依據使用者的搜尋需求提供相關網頁。AI 搜尋則會結合搜尋索引、資訊檢索及生成式 AI 技術，從不同來源取得資訊，再整理成回答。</p>
+      <p>以 Google AI Overviews 和 AI Mode 為例，Google 會透過既有搜尋系統尋找相關網頁，並運用 AI 技術理解問題及整理資訊。ChatGPT、Perplexity 等 AI 搜尋服務，也可能透過網頁搜尋、資料檢索或其他資訊來源取得內容。</p>
+      <p>因此，AI 搜尋並不是單純讀取網站的 Schema，而是需要綜合判斷網頁內容、資訊可信度、相關性及其他訊號。</p>
+
+      <h3>2. Schema 如何協助 AI 辨識網站中的實體與資訊關係？</h3>
+      <p>AI 系統在理解網站內容時，除了需要知道網頁寫了什麼，也需要辨識內容中出現的人物、企業、商品及服務分別代表什麼。</p>
+      <table>
+        <thead><tr><th>Schema 類型</th><th>可描述的資訊</th></tr></thead>
+        <tbody>
+          <tr><td>Organization</td><td>企業名稱、網站及組織資訊</td></tr>
+          <tr><td>Person</td><td>作者或人物資訊</td></tr>
+          <tr><td>Service</td><td>服務名稱及服務內容</td></tr>
+          <tr><td>Article</td><td>文章標題、作者及發布日期</td></tr>
+          <tr><td>Product</td><td>商品名稱、品牌及價格</td></tr>
+        </tbody>
+      </table>
+      <p>這些標記能提供更明確的資訊描述，協助支援相關標準的系統理解網站內容。不過，Schema 只是輔助資訊，不能保證 AI 一定能正確理解所有內容，也不能保證網站會被 AI 搜尋引用。</p>
+
+      <h3>3. 結構化資料與 Google AI Overviews、AI Mode 有什麼關聯？</h3>
+      <p>Google AI Overviews 是 Google 搜尋中的 AI 摘要功能，會針對部分搜尋問題整理相關資訊，並提供延伸閱讀的網頁連結。AI Mode 則提供更具互動性的 AI 搜尋體驗，使用者可以進一步提出問題、比較不同資訊及探索相關主題。</p>
+      <p>對網站經營者而言，除了爭取傳統搜尋結果的曝光，也需要關注內容是否能被搜尋系統檢索及理解。Schema 在這裡扮演輔助角色：透過結構化資料描述企業、文章及商品資訊；搭配清楚的 HTML 結構；確保標記資料與使用者實際看到的內容一致；並建立完整的網站架構及內部連結。</p>
+      <div class="note"><strong>重要提醒：</strong>Google 官方表示，AI Overviews 與 AI Mode 沒有額外的 Schema 設定要求，也沒有專門為 AI 搜尋設計的 Schema.org 標記。網站不需要為了進入 Google AI 搜尋結果而建立特殊的「AI Schema」。</div>
+
+      <h3>4. Schema 對 ChatGPT、Perplexity 等 AI 搜尋工具有幫助嗎？</h3>
+      <p>ChatGPT、Perplexity 等工具可能透過搜尋引擎、網頁爬取或其他資訊來源取得內容，再根據使用者問題產生回答。Schema 採用標準化的資料描述方式，對支援相關格式的系統而言，具有提供明確資訊的價值。</p>
+      <p>不過，各 AI 平台的搜尋、索引及內容引用機制並不完全相同，不能假設所有 AI 工具都會使用 Schema，也不能將 Schema 視為提高 AI 引用率的直接排名因素。</p>
+      <ul>
+        <li>確保網站允許相關搜尋爬蟲存取公開內容。</li>
+        <li>提供清楚、完整且具有參考價值的文章。</li>
+        <li>使用明確的標題、段落及語意化 HTML。</li>
+        <li>建立一致的企業、作者及服務資訊。</li>
+        <li>持續檢查網站是否能正常被搜尋及索引。</li>
+      </ul>
+
+      <h3>5. GEO 與 Schema 有什麼關係？結構化資料是 GEO 的必要條件嗎？</h3>
+      <p>GEO（Generative Engine Optimization，生成式引擎優化）是指針對生成式 AI 搜尋環境進行內容及網站優化，期望提高品牌或網站資訊被 AI 搜尋系統發現、理解及引用的機會。</p>
+      <table>
+        <thead><tr><th>比較面向</th><th>SEO</th><th>GEO</th><th>Schema 的輔助角色</th></tr></thead>
+        <tbody>
+          <tr><td>內容理解</td><td>搜尋引擎理解網頁</td><td>AI 理解資訊及語意</td><td>提供明確資料描述</td></tr>
+          <tr><td>資訊辨識</td><td>辨識網頁主題</td><td>辨識企業、人物及商品</td><td>建立實體及屬性關係</td></tr>
+          <tr><td>資訊呈現</td><td>搜尋結果</td><td>AI 生成回答及來源連結</td><td>提供標準化資訊</td></tr>
+        </tbody>
+      </table>
+      <p>Schema 可以作為 GEO 的技術輔助項目，但不是 GEO 的必要條件，也不是決定 AI 是否引用網站的唯一因素。真正重要的是網站能否提供有價值、可信且容易理解的資訊，並確保搜尋系統能夠正常存取及檢索。</p>
+
+      <h3>6. AI 搜尋時代，網站應該如何規劃結構化資料？</h3>
+      <ol>
+        <li><strong>建立企業資訊：</strong>透過 Organization、WebSite 等類型，整理企業名稱、官方網站及相關資訊。</li>
+        <li><strong>建立內容資訊：</strong>透過 Article、Person 等類型，描述文章、作者及發布資訊。</li>
+        <li><strong>建立商品與服務資訊：</strong>透過 Product、Service 等類型，整理產品及服務的基本資料。</li>
+        <li><strong>維持資料一致性：</strong>確保 Schema 標記與網站實際內容、企業公開資訊一致。</li>
+      </ol>
+      <p>與其為了 AI 搜尋不斷增加各種標記，不如先建立正確且一致的網站資訊架構，再依照實際頁面需求逐步擴充。</p>
+    </section>
+
+    <section id="types">
+      <h2>四、Schema 結構化資料有哪些類型？常見標記整理</h2>
+      <p>Schema.org 定義了許多不同的資料類型，可以依照網站內容及使用情境選擇適合的標記。以下整理企業網站、內容網站及電商網站較常使用的 Schema 類型。</p>
+
+      <h3>1. 企業與網站資訊：Organization、WebSite、WebPage、Person</h3>
+      <p>這類 Schema 主要用來描述企業、網站及人物資訊，適合企業官網、品牌網站及個人網站使用。</p>
+      <table><thead><tr><th>Schema 類型</th><th>主要用途</th></tr></thead><tbody>
+        <tr><td>Organization</td><td>描述公司或組織名稱、Logo、網址及聯絡資訊</td></tr>
+        <tr><td>WebSite</td><td>描述整個網站的名稱及網址</td></tr>
+        <tr><td>WebPage</td><td>描述單一網頁的基本資訊</td></tr>
+        <tr><td>Person</td><td>描述人物、作者及相關資訊</td></tr>
+      </tbody></table>
+
+      <h3>2. 文章與內容資訊：Article、BlogPosting、NewsArticle</h3>
+      <p>適合部落格、新聞網站、知識專欄及企業內容行銷網站。</p>
+      <table><thead><tr><th>Schema 類型</th><th>主要用途</th></tr></thead><tbody>
+        <tr><td>Article</td><td>一般文章內容</td></tr><tr><td>BlogPosting</td><td>部落格文章</td></tr><tr><td>NewsArticle</td><td>新聞報導</td></tr>
+      </tbody></table>
+      <p>文章類型常見屬性包括：<code>headline</code>（文章標題）、<code>author</code>（作者）、<code>datePublished</code>（發布日期）、<code>dateModified</code>（更新日期）、<code>image</code>（代表圖片）及 <code>publisher</code>（發布組織）。</p>
+
+      <h3>3. 商品與購物資訊：Product、Offer、Review</h3>
+      <p>這類 Schema 適合電子商務網站、購物平台及商品介紹頁面。</p>
+      <table><thead><tr><th>Schema 類型</th><th>主要用途</th></tr></thead><tbody>
+        <tr><td>Product</td><td>描述商品名稱、品牌及商品資訊</td></tr>
+        <tr><td>Offer</td><td>描述商品價格、幣別及供應狀態</td></tr>
+        <tr><td>Review</td><td>描述商品或服務的評論</td></tr>
+        <tr><td>AggregateRating</td><td>描述整體評分及評價數量</td></tr>
+      </tbody></table>
+      <p>商品頁面可以透過 Product 描述商品名稱與品牌，再透過 Offer 提供價格及庫存資訊。若商品具有真實且符合規範的使用者評價，也可以依照 Google 規範設定相關評價資料。</p>
+
+      <h3>4. 在地商家與服務資訊：LocalBusiness、Service</h3>
+      <p>適合實體店家、在地商家及提供專業服務的企業。</p>
+      <table><thead><tr><th>Schema 類型</th><th>主要用途</th></tr></thead><tbody>
+        <tr><td>LocalBusiness</td><td>描述實體商家的名稱、地址、營業時間及聯絡資訊</td></tr>
+        <tr><td>Service</td><td>描述企業提供的服務內容及相關資訊</td></tr>
+      </tbody></table>
+      <p>例如，餐廳可以使用 LocalBusiness 描述店家地址、營業時間及聯絡方式；顧問公司則可以使用 Service 描述企業提供的顧問服務。</p>
+
+      <h3>5. 網站導覽與內容架構：BreadcrumbList</h3>
+      <p>BreadcrumbList 又稱為麵包屑導覽，主要用來描述網頁在網站中的階層位置。例如：首頁 ＞ SEO 教學 ＞ 技術 SEO ＞ Schema 結構化資料。透過 BreadcrumbList，網站可以明確描述首頁、分類頁及文章頁之間的階層關係。</p>
+
+      <h3>6. 活動與影音資訊：Event、VideoObject</h3>
+      <table><thead><tr><th>Schema 類型</th><th>主要用途</th></tr></thead><tbody>
+        <tr><td>Event</td><td>描述活動名稱、時間、地點及活動資訊</td></tr>
+        <tr><td>VideoObject</td><td>描述影片標題、縮圖、上傳日期及影片網址</td></tr>
+      </tbody></table>
+
+      <h3>7. 食譜及其他生活資訊：Recipe</h3>
+      <p>Recipe 主要用於食譜內容，可以標記食譜名稱、食材、烹調時間、製作步驟、成品圖片及營養資訊，適合美食部落格、料理教學網站及食譜平台。</p>
+
+      <h3>8. FAQPage、HowTo 等其他結構化資料的應用與限制</h3>
+      <p>Schema.org 還有 FAQPage、HowTo 等標記。FAQPage 用來描述網頁中的常見問題及答案；HowTo 用來描述完成特定任務的步驟。</p>
+      <div class="callout"><strong>政策提醒：</strong>Google 已於 2026 年 5 月 7 日起停止顯示 FAQ 複合式搜尋結果，HowTo 複合式搜尋結果也已停止支援。這些類型仍可從 Schema.org 資料結構角度認識，但不應宣稱設定後能產生 Google 特殊搜尋結果。</div>
+      <p>可參考 <a href="https://developers.google.com/search/docs/appearance/structured-data/search-gallery" target="_blank" rel="noopener">Google 結構化資料搜尋功能列表</a>，確認目前支援的類型。</p>
+    </section>
+
+    <section id="scope">
+      <h2>五、Schema 應該放在哪些網頁？全站與單頁設定方式</h2>
+      <p>網站設定 Schema 時，並不是每個網頁都需要放入完全相同的結構化資料。可以將 Schema 分成兩種管理層級：Page-level Schema（單頁層級）及 Site-wide Schema（全站層級）。</p>
+
+      <h3>1. Page-level Schema：依照單一網頁內容設定</h3>
+      <p>Page-level Schema 是針對單一網頁的實際內容設定結構化資料。不同網頁可能具有不同的主題及資訊，因此需要選擇適合的 Schema 類型。</p>
+      <table><thead><tr><th>網頁類型</th><th>建議 Schema</th><th>標記資訊</th></tr></thead><tbody>
+        <tr><td>文章頁</td><td>Article、BlogPosting</td><td>標題、作者、發布日期</td></tr>
+        <tr><td>商品頁</td><td>Product、Offer</td><td>商品名稱、價格、庫存</td></tr>
+        <tr><td>活動頁</td><td>Event</td><td>活動名稱、日期、地點</td></tr>
+        <tr><td>常見問題頁</td><td>FAQPage</td><td>問題及答案</td></tr>
+      </tbody></table>
+      <p>Page-level Schema 的重點，是讓每個網頁的結構化資料與實際內容相符。</p>
+
+      <h3>2. Site-wide Schema：全站或依照頁面模板設定</h3>
+      <p>Site-wide Schema 是針對整個網站，或具有相同版型的多個網頁進行設定。這類標記通常由網站管理者、SEO 人員或工程師統一規劃，再透過網站模板自動產生。</p>
+      <table><thead><tr><th>設定範圍</th><th>建議 Schema</th><th>應用方式</th></tr></thead><tbody>
+        <tr><td>首頁與企業資訊</td><td>Organization</td><td>描述企業基本資料</td></tr>
+        <tr><td>全站資訊</td><td>WebSite</td><td>描述網站名稱及網址</td></tr>
+        <tr><td>文章模板</td><td>Article</td><td>自動帶入各篇文章資訊</td></tr>
+        <tr><td>商品模板</td><td>Product</td><td>自動帶入各項商品資訊</td></tr>
+        <tr><td>網站導覽</td><td>BreadcrumbList</td><td>描述各頁面的階層路徑</td></tr>
+      </tbody></table>
+      <p>例如，企業網站可以統一設定 Organization，讓企業名稱、官方網址及 Logo 等資訊維持一致。新增文章時，文章模板可以自動讀取文章標題、作者及發布日期，產生對應的 Article 結構化資料。</p>
+
+      <h3>3. 如何規劃全站 Schema，避免重複或衝突？</h3>
+      <ol>
+        <li>確認網站基本資訊：整理企業名稱、官方網址、Logo 及聯絡資訊。</li>
+        <li>盤點網站頁面類型：區分首頁、文章頁、商品頁、服務頁及活動頁。</li>
+        <li>建立 Schema 對應表：確認不同頁面應該使用哪些標記。</li>
+        <li>統一管理共用資訊：例如企業名稱、品牌及作者資料。</li>
+        <li>設定頁面模板：讓相同類型的頁面自動產生對應的結構化資料。</li>
+        <li>檢查重複及衝突：確認外掛、CMS 及網站程式沒有重複輸出不一致的標記。</li>
+      </ol>
+    </section>
+
+    <section id="setup">
+      <h2>六、Schema 如何設定？結構化資料建立與操作教學</h2>
+      <p>不論是使用 WordPress 外掛、線上產生工具，或透過工程師協助撰寫程式碼，都應該先確認網頁內容，再選擇適合的標記類型。</p>
+
+      <div class="step">
+        <div class="step-label">STEP 01</div>
+        <h3>確認網頁類型與需要標記的資訊</h3>
+        <p>先確認網頁主要用途，例如企業首頁使用 Organization、文章頁使用 Article、商品頁使用 Product、服務頁使用 Service、商家資訊頁使用 LocalBusiness。接著整理網頁中實際存在的標題、作者、價格、地址及發布日期等資訊。</p>
+      </div>
+
+      <div class="step">
+        <div class="step-label">STEP 02</div>
+        <h3>選擇適合的 Schema 語法</h3>
+        <p>常見格式有 JSON-LD、Microdata 及 RDFa。三種格式都能描述結構化資料，但實作方式有所不同。</p>
+        <h4>JSON-LD：Google 建議採用的格式</h4>
+        <p>JSON-LD（JavaScript Object Notation for Linked Data）透過 JSON 格式描述資料關聯，通常放在 HTML 的 script 標籤中。</p>
+        <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "範例科技股份有限公司",
+  "url": "https://www.example.com",
+  "logo": "https://www.example.com/logo.png"
+}
+&lt;/script&gt;</code></pre>
+        <ul>
+          <li><code>@context</code>：指定使用 Schema.org 的詞彙標準。</li>
+          <li><code>@type</code>：指定資料類型。</li>
+          <li><code>name</code>：企業名稱。</li>
+          <li><code>url</code>：企業官方網站。</li>
+          <li><code>logo</code>：企業 Logo 網址。</li>
+        </ul>
+        <p>JSON-LD 的優點是可以將結構化資料獨立於 HTML 內容之外，方便新增、修改及維護，因此 Google 建議網站優先採用 JSON-LD。</p>
+
+        <h4>Microdata：嵌入 HTML 的標記方式</h4>
+        <p>Microdata 透過 HTML 標籤的屬性，直接將結構化資料加入網頁內容。</p>
+        <pre><code>&lt;div itemscope itemtype="https://schema.org/Product"&gt;
+  &lt;span itemprop="name"&gt;無線藍牙耳機&lt;/span&gt;
+  &lt;span itemprop="brand"&gt;ABC&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        <p><code>itemscope</code> 宣告資料項目、<code>itemtype</code> 指定資料類型、<code>itemprop</code> 指定各項資訊的屬性。</p>
+
+        <h4>RDFa：透過 HTML 屬性標記資料</h4>
+        <p>RDFa（Resource Description Framework in Attributes）也是將結構化資料嵌入 HTML 的方式。</p>
+        <pre><code>&lt;div vocab="https://schema.org/"
+     typeof="Organization"&gt;
+  &lt;span property="name"&gt;
+    範例科技股份有限公司
+  &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        <p><code>vocab</code> 指定詞彙標準、<code>typeof</code> 指定資料類型、<code>property</code> 指定資料屬性。</p>
+        <table><thead><tr><th>比較項目</th><th>JSON-LD</th><th>Microdata</th><th>RDFa</th></tr></thead><tbody>
+          <tr><td>標記方式</td><td>獨立 JSON 程式碼</td><td>嵌入 HTML</td><td>嵌入 HTML</td></tr>
+          <tr><td>維護方式</td><td>相對容易</td><td>需配合 HTML 修改</td><td>需配合 HTML 修改</td></tr>
+          <tr><td>Google 支援</td><td>支援</td><td>支援</td><td>支援</td></tr>
+          <tr><td>建議用途</td><td>新網站及一般網站</td><td>既有 HTML 架構</td><td>既有 RDFa 架構</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="step">
+        <div class="step-label">STEP 03</div>
+        <h3>建立 Schema 結構化資料</h3>
+        <h4>方法一：WordPress Schema 外掛設定</h4>
+        <p>如果網站使用 WordPress，可以透過 SEO 外掛或專門的 Schema 外掛建立結構化資料。常見工具包括 Yoast SEO、Rank Math SEO 及 Schema Pro。</p>
+        <ol>
+          <li>登入 WordPress 後台。</li>
+          <li>安裝並啟用適合的 SEO 或 Schema 外掛。</li>
+          <li>設定網站基本資訊，例如企業名稱、Logo 及網站類型。</li>
+          <li>進入文章或頁面設定區域。</li>
+          <li>選擇適合的 Schema 類型。</li>
+          <li>填寫文章標題、作者、發布日期等資訊。</li>
+          <li>儲存設定並檢查網頁輸出結果。</li>
+        </ol>
+        <p>不同外掛提供的功能及操作介面可能有所差異，部分進階 Schema 功能也可能需要付費版本。</p>
+
+        <h4>方法二：使用 Schema Markup Generator 產生程式碼</h4>
+        <p>不想安裝 WordPress 外掛，也可以使用 <a href="https://technicalseo.com/tools/schema-markup-generator/" target="_blank" rel="noopener">TechnicalSEO.com Schema Markup Generator</a>。選擇 Schema 類型、填寫資訊、產生 JSON-LD 程式碼，再將程式碼加入網站並進行測試。</p>
+        <p>產生程式碼後，仍應確認欄位是否正確，以及是否符合 Google 的相關規範。</p>
+
+        <h4>方法三：透過 JSON-LD 手動建立結構化資料</h4>
+        <p>如果具有 HTML、JavaScript 或網站開發經驗，也可以直接撰寫 JSON-LD。手動建立的優點是彈性高，可以依照網站需求調整欄位及資料結構；但若網站規模較大，建議透過 CMS 或程式模板統一管理。</p>
+      </div>
+
+      <div class="step">
+        <div class="step-label">STEP 04</div>
+        <h3>將 Schema 加入網站</h3>
+        <p><strong>單頁加入：</strong>將 JSON-LD 加入特定文章或商品頁的 HTML 中。<br><strong>全站或模板自動套用：</strong>透過網站模板或 CMS 自動產生結構化資料，例如文章模板讀取文章標題、作者、發布日期及代表圖片，再產生 Article 標記。</p>
+      </div>
+
+      <div class="step">
+        <div class="step-label">STEP 05</div>
+        <h3>測試與驗證結構化資料</h3>
+        <h4>Google Rich Results Test（複合式搜尋結果測試）</h4>
+        <p><a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">開啟 Google Rich Results Test</a>，輸入網頁網址或貼上程式碼，檢查是否包含 Google 支援的複合式搜尋結果標記，以及是否有必要欄位錯誤。</p>
+        <h4>Schema.org Markup Validator（Schema 結構化資料驗證工具）</h4>
+        <p><a href="https://validator.schema.org/" target="_blank" rel="noopener">開啟 Schema.org Markup Validator</a>，檢查網頁中的 Schema 結構化資料是否符合 Schema.org 的詞彙及語法規則。它可以檢查比 Google 複合式搜尋結果更廣泛的 Schema.org 標記類型。</p>
+        <table><thead><tr><th>工具</th><th>主要用途</th></tr></thead><tbody>
+          <tr><td>Google Rich Results Test</td><td>檢查 Google 支援的複合式搜尋結果資格</td></tr>
+          <tr><td>Schema.org Markup Validator</td><td>檢查 Schema.org 結構化資料及標記內容</td></tr>
+        </tbody></table>
+        <p>通過測試不代表 Google 一定會顯示複合式搜尋結果。</p>
+      </div>
+
+      <div class="step">
+        <div class="step-label">STEP 06</div>
+        <h3>透過 Google Search Console 監控網站狀況</h3>
+        <p>完成測試後，可以透過 <a href="https://search.google.com/search-console/about" target="_blank" rel="noopener">Google Search Console</a> 持續追蹤網站索引及搜尋表現，包括檢查 Google 是否成功檢索網頁、查看索引狀態、監控支援的複合式搜尋結果報表，以及查看搜尋曝光、點擊及平均排名。</p>
+        <p>Schema 並不是設定一次就結束，仍應定期檢查資料是否正確、網頁是否正常更新，以及是否出現新的錯誤。</p>
+      </div>
+    </section>
+
+    <section id="mistakes">
+      <h2>七、Schema 設定常見錯誤與注意事項</h2>
+      <h3>1. Schema 標記內容與網頁實際呈現資訊不一致</h3>
+      <p>例如 Schema 標記的商品價格與網頁顯示價格不同、文章作者不一致，或標記網頁上沒有出現的商品評價。Google 要求結構化資料必須反映使用者實際看得到的網頁內容，不能透過標記加入誤導或隱藏資訊。</p>
+
+      <h3>2. 使用與網頁內容無關的 Schema 類型</h3>
+      <p>不同 Schema 類型有不同用途。商品頁使用 Product、文章頁使用 Article、企業資訊頁使用 Organization、活動頁使用 Event。應依照網頁真正的內容選擇 Schema，而不是單純追求更多標記。</p>
+
+      <h3>3. 遺漏必要欄位或填寫錯誤資訊</h3>
+      <p>部分 Schema 類型具有特定必要欄位。如果缺少重要資訊，可能無法符合 Google 複合式搜尋結果的資格。設定前應查閱 Google 官方文件，確認必要欄位、建議欄位及格式要求。</p>
+
+      <h3>4. 同一網頁重複設定相同或衝突的 Schema</h3>
+      <p>網站若同時使用多個 SEO 外掛、Schema 外掛或自行撰寫程式碼，可能出現重複或資訊不一致的標記。應檢查網站實際輸出的 HTML，確認是否有重複標記，並統一資料來源。</p>
+      <p>同一網頁出現多個 Schema 並不一定是錯誤，因為一個頁面可能同時包含 Organization、WebPage、Article 等不同資訊。重點在於資料是否正確，以及不同標記之間是否有清楚的關聯。</p>
+
+      <h3>5. Schema 通過測試，為什麼 Google 仍未顯示複合式搜尋結果？</h3>
+      <p>Google Rich Results Test 顯示通過，只代表網頁符合特定技術及標記條件，不代表一定會出現在搜尋結果中。可能原因包括 Google 尚未重新檢索網頁、網頁尚未被索引、網站或頁面不符合政策，或該類型已不再受到 Google 搜尋支援。</p>
+    </section>
+
+    <section id="faq" class="faq">
+      <h2>八、Schema 結構化資料常見問題 FAQ</h2>
+      <details>
+        <summary>Q1：每個網頁都需要設定 Schema 嗎？</summary>
+        <p>不一定。Schema 應依照網頁內容及用途選擇適合的類型，不需要為了設定而讓每個頁面都加入大量標記。例如企業首頁可以設定 Organization，文章頁可以設定 Article，商品頁則可以設定 Product。</p>
+      </details>
+      <details>
+        <summary>Q2：Schema 和結構化資料是一樣的東西嗎？</summary>
+        <p>兩者相關，但不完全相同。結構化資料是將資訊依照特定規則整理的概念；Schema.org 則提供標準化詞彙及資料類型。一般所說的 Schema 標記，就是使用 Schema.org 定義的資料類型及屬性，在網頁中建立結構化資料。</p>
+      </details>
+      <details>
+        <summary>Q3：不會寫程式也能設定 Schema 嗎？</summary>
+        <p>可以。WordPress 使用者可以透過 Yoast SEO、Rank Math 等外掛協助建立部分結構化資料，也可以使用線上 Schema Markup Generator 產生 JSON-LD 程式碼，再請網站管理者協助加入網頁。</p>
+      </details>
+      <details>
+        <summary>Q4：設定 Schema 後多久會被 Google 辨識？</summary>
+        <p>沒有固定時間。Google 需要先檢索網頁，再處理及判斷相關資訊。可以透過 Google Search Console 檢查網頁索引狀態，必要時使用網址檢查工具要求重新建立索引。即使 Google 已讀取 Schema，也不代表一定會顯示複合式搜尋結果。</p>
+      </details>
+      <details>
+        <summary>Q5：Schema 可以幫助網站出現在 AI 搜尋結果嗎？</summary>
+        <p>Schema 可以透過標準化欄位，協助支援相關格式的系統理解網站中的企業、人物、商品及文章資訊。但 AI 搜尋系統是否會讀取、使用或引用這些資料，仍取決於各平台的檢索及內容判斷機制。</p>
+      </details>
+      <details>
+        <summary>Q6：設定 Schema 就能提升 GEO 成效嗎？</summary>
+        <p>不一定。GEO 除了涉及網站資訊結構，也與內容品質、資訊可信度、網站可檢索性及主題完整度有關。Schema 可以協助描述資訊，但不能取代高品質內容及完整的 SEO 基礎。</p>
+      </details>
+      <details>
+        <summary>Q7：FAQ Schema 現在還有設定的必要嗎？</summary>
+        <p>FAQPage 仍是 Schema.org 定義的資料類型，可以用來描述網頁中的問題與答案。但 Google 已停止顯示 FAQ 複合式搜尋結果，因此一般網站不應再為了取得 Google FAQ 展開式搜尋結果而設定這項標記。若網站有常見問題內容，仍應以使用者閱讀需求為主，將問題與答案清楚呈現在網頁上。</p>
+      </details>
+    </section>
+
+    <section id="conclusion">
+      <h2>九、結論：善用 Schema 結構化資料，打造更容易被搜尋引擎理解的網站</h2>
+      <p>Schema 結構化資料是網站技術 SEO 中的重要工具，透過標準化的資料格式，能夠幫助搜尋引擎理解網頁中的企業、文章、商品及服務資訊，並建立不同內容之間的關聯。</p>
+      <p>從傳統 SEO 到 AI 搜尋時代，網站經營者除了持續優化內容品質，也應該重視網站資訊架構及資料的可讀性。不過，Schema 並不是提升搜尋排名或進入 AI 搜尋結果的保證。真正有效的網站優化，仍需要結合以下幾個面向：</p>
+      <ol>
+        <li><strong>內容品質：</strong>提供完整、正確且具有實際價值的資訊。</li>
+        <li><strong>技術 SEO：</strong>確保搜尋引擎能夠正常檢索及索引網站。</li>
+        <li><strong>結構化資料：</strong>透過適合的 Schema 類型描述網頁資訊。</li>
+        <li><strong>網站架構：</strong>建立清楚的頁面層級及內容關聯。</li>
+        <li><strong>持續監測：</strong>利用 Google Search Console 等工具追蹤網站狀況。</li>
+      </ol>
+      <div class="callout"><strong>Schema 不只是搜尋結果的呈現工具，更是網站整理及傳遞資訊的重要方式。</strong></div>
+    </section>
+
+    <section class="sources">
+      <h2>延伸閱讀與參考資料</h2>
+      <ul>
+        <li><a href="https://schema.org/" target="_blank" rel="noopener">Schema.org 官方網站</a></li>
+        <li><a href="https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data" target="_blank" rel="noopener">Google：Introduction to Structured Data</a></li>
+        <li><a href="https://developers.google.com/search/docs/appearance/ai-features" target="_blank" rel="noopener">Google：AI Features and Your Website</a></li>
+        <li><a href="https://developers.google.com/search/docs/appearance/structured-data/search-gallery" target="_blank" rel="noopener">Google：Structured Data Search Gallery</a></li>
+        <li><a href="https://technicalseo.com/tools/schema-markup-generator/" target="_blank" rel="noopener">TechnicalSEO：Schema Markup Generator</a></li>
+        <li><a href="https://validator.schema.org/" target="_blank" rel="noopener">Schema.org Markup Validator</a></li>
+        <li><a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Google Rich Results Test</a></li>
+        <li><a href="https://www.contentful.com/seo-guide/schema-seo/" target="_blank" rel="noopener">Contentful：Schema SEO &amp; Structured Data</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>本文為 SEO 知識介紹與操作參考。Google 搜尋功能、結構化資料支援項目及各平台 AI 搜尋機制可能調整，實際設定前請以官方最新文件為準。</p>
+  </footer>
+</body>
+</html>
